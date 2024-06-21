@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The best way to maximize life expectancy &#8212; Jupyter Book Template</title>
+    <title>The best way to maximize life expectancy &#8212; Education and Life Expectancy</title>
   
   
   
@@ -147,7 +147,7 @@
   
   
   
-    <p class="title logo__title">Jupyter Book Template</p>
+    <p class="title logo__title">Education and Life Expectancy</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -227,7 +227,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/yenchiah/jupyter-book-template/blob/main/docs/docs/notebook.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/uhmsebas/infovis24/blob/main/docs/docs/notebook.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -258,7 +258,7 @@
       
       
       
-      <li><a href="https://github.com/yenchiah/jupyter-book-template" target="_blank"
+      <li><a href="https://github.com/uhmsebas/infovis24" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
       
       
       
-      <li><a href="https://github.com/yenchiah/jupyter-book-template/issues/new?title=Issue%20on%20page%20%2Fdocs/notebook.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/uhmsebas/infovis24/issues/new?title=Issue%20on%20page%20%2Fdocs/notebook.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -642,15 +642,15 @@ GDP, Total expenditure, BMI, thinness 1-19 years,Alcohol</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">scipy.stats.mstats</span> <span class="kn">import</span> <span class="n">winsorize</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;Normalized_Dataset_EDU.csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">scipy.stats.mstats</span> <span class="kn">import</span> <span class="n">winsorize</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;Normalized_Dataset_EDU.csv&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;scipy&#39;
+<span class="ne">NameError</span>: name &#39;gpd&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1098,7 +1098,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <div class="footer-item">
     
 <p class="component-author">
-By Yen-Chia Hsu
+By Forum voor Educatie
 </p>
 
   </div>

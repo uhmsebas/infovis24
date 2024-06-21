@@ -1,0 +1,192 @@
+Traceback (most recent call last):
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import geopandas
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+from scipy.stats.mstats import winsorize
+data = gpd.read_file('Normalized_Dataset_EDU.csv')
+data.head()
+data['Value'] = pd.to_numeric(data['Value'], errors='coerce')
+data['Life expectancy'] = pd.to_numeric(data['Life expectancy'], errors='coerce')
+
+
+# Laad de dataset met landen grenzen
+
+border = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+# Merge the non-spatial data with the spatial GeoDataFrame based on the country name
+# Assuming 'Country' in CSV and 'name' in border GeoDataFrame
+merged_data = border.merge(data, left_on='name', right_on='Country')
+# Plot histograms of the 'edu' and 'Life expectancy' columns
+bins = [0, 0.33, 0.66, 1]
+
+# Bin the first variable - x
+data['Var1_Class'] = pd.cut(data['Value'], bins=bins, include_lowest=True)
+data['Var1_Class'] = data['Var1_Class'].astype('str')
+
+# Bin the second variable - y
+data['Var2_Class'] = pd.cut(data['Life expectancy'], bins=bins, include_lowest=True)
+data['Var2_Class'] = data['Var2_Class'].astype('str')
+
+# Code created x bins to 1, 2, 3
+x_class_codes = np.arange(1, len(bins))
+d = dict(zip(data['Var1_Class'].value_counts().sort_index().index, x_class_codes))
+data['Var1_Class'] = data['Var1_Class'].replace(d)
+
+# Code created y bins to A, B, C
+y_class_codes = ['A', 'B', 'C']
+d = dict(zip(data['Var2_Class'].value_counts().sort_index().index, y_class_codes))
+data['Var2_Class'] = data['Var2_Class'].replace(d)
+
+# Combine x and y codes to create Bi_Class
+data['Bi_Class'] = data['Var1_Class'].astype('str') + data['Var2_Class']
+colors = ['#e8e8e8', # 1A
+          '#b0d5df', # 1B
+          '#64acbe', # 1C
+          '#e4acac', # 2A
+          '#ad9ea5', # 2B
+          '#627f8c', # 2C
+          '#c85a5a', # 3A
+          '#985356', # 3B
+          '#574249'] # 3C
+            
+from shapely.geometry import Point
+import contextily as ctx
+
+# Load the CSV file
+data = pd.read_csv('Normalized_Dataset_EDU.csv')
+
+# Convert the 'edu' and 'Life expectancy' columns to numeric
+data['Value'] = pd.to_numeric(data['Value'], errors='coerce')
+data['Life expectancy'] = pd.to_numeric(data['Life expectancy'], errors='coerce')
+
+# Load the dataset with country borders
+border = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+border = border[border['name'] != 'Antarctica']
+# Merge the non-spatial data with the spatial GeoDataFrame based on the country name
+# Assuming 'Country' in CSV and 'name' in border GeoDataFrame
+merged_data = border.merge(data, left_on='name', right_on='Country')
+
+# Ensure the GeoDataFrame has a CRS set
+if merged_data.crs is None:
+    merged_data = merged_data.set_crs('EPSG:4326')  # Assuming WGS84
+
+# Add the 'Bi_Class' column to your data for bivariate choropleth (example here)
+# This should be defined according to your specific logic
+merged_data['Bi_Class'] = pd.qcut(merged_data['Value'], 3, labels=['low', 'medium', 'high']).astype(str) + \
+                          pd.qcut(merged_data['Life expectancy'], 3, labels=['_low', '_medium', '_high']).astype(str)
+
+# Define custom colors for each category
+category_colors = {
+    'low_low': '#ffffe5',  # low edu, low life expectancy
+    'low_medium': '#f7fcb9',  # low edu, medium life expectancy
+    'low_high': '#d9f0a3',  # low edu, high life expectancy
+    'medium_low': '#addd8e',  # medium edu, low life expectancy
+    'medium_medium': '#78c679',  # medium edu, medium life expectancy
+    'medium_high': '#41ab5d',  # medium edu, high life expectancy
+    'high_low': '#238443',  # high edu, low life expectancy
+    'high_medium': '#006837',  # high edu, medium life expectancy
+    'high_high': '#004529'  # high edu, high life expectancy
+}
+merged_data['color'] = merged_data['Bi_Class'].map(category_colors)
+
+# Create the plot
+fig, ax = plt.subplots(figsize=(8, 8))
+
+# Step 1: Draw the map
+border.to_crs('EPSG:3857').plot(ax=ax, facecolor='none', edgecolor='black', alpha=0.5)  # country borders
+merged_data.to_crs('EPSG:3857').plot(ax=ax,
+                                     column='Bi_Class',  # variable that is going to be used to color the map
+                                     legend=False,  # we're going to draw the legend ourselves
+                                     categorical=True,  # bivariate choropleth has to be colored as categorical map
+                                     color=merged_data['color'],
+                                     linewidth=0.5,
+                                     edgecolor='black',
+                                     legend_kwds={'loc': 'lower left'})  # position of legend
+
+# Add the basemap
+ctx.add_basemap(ax, source=ctx.providers.CartoDB.Positron)
+
+plt.tight_layout()  # "tighten" two figures map and basemap
+plt.axis('off')  # we don't need axis with coordinates
+ax.set_title('Education vs Life Expectancy Bivariate Choropleth')
+
+# Step 2: Draw the legend
+# Create a custom legend
+legend_handles = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=color, markersize=10, label=label)
+                  for label, color in category_colors.items()]
+ax.legend(handles=legend_handles, loc='lower left', title='Legend')
+
+plt.show()
+import matplotlib.ticker as mtick
+df = pd.read_csv("Normalized_Dataset_edu-prisectet.csv", usecols=['Year',"GDP", 'Country', "Value", "Indicator Name",  "Indicator Code", 'Life expectancy'])
+second_df = df[df["Indicator Name"].str.contains("Lower secondary completion rate") == True]
+third_df = df[df["Indicator Name"].str.contains("Primary completion rate") == True]
+second_df.to_csv("Normalized_Dataset_edu-prisectet1.csv", index=False)
+third_df.to_csv("Normalized_Dataset_edu-prisectet2.csv", index=False)
+plt.scatter(second_df['Value'], second_df['Life expectancy'], alpha=0.3, c='green', label='Lower secondary completion rate')
+plt.scatter(third_df['Value'], third_df['Life expectancy'], alpha=0.3, c='red', label='Primary completion rate')
+plt.xlabel('Completion rate (normalized)')
+plt.ylabel('Life Expectancy (normalized)')
+plt.title('Education vs. Life Expectancy')
+
+x_clean = second_df['Value']
+y_clean = second_df['Life expectancy']
+
+# Performing linear regression
+slope, intercept = np.polyfit(x_clean, y_clean, 1)
+
+# Calculate the values of the regression line
+regression_line = slope * x_clean + intercept
+
+# Create a combined scatter plot with the regression line
+plt.plot(x_clean, regression_line, color='green', label='Regression Line Secondary')
+
+x_clean = third_df['Value']
+y_clean = third_df['Life expectancy']
+
+# Performing linear regression
+slope, intercept = np.polyfit(x_clean, y_clean, 1)
+
+# Calculate the values of the regression line
+regression_line = slope * x_clean + intercept
+ax = plt.subplot(1,1,1)
+# Create a combined scatter plot with the regression line
+ax.xaxis.set_major_formatter(mtick.PercentFormatter(1.0))
+
+plt.plot(x_clean, regression_line, color='red', label='Regression Line Primary')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 6[0m
+[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m
+[0;32m----> 6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mstats[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmstats[39;00m [38;5;28;01mimport[39;00m winsorize
+[1;32m      7[0m data [38;5;241m=[39m gpd[38;5;241m.[39mread_file([38;5;124m'[39m[38;5;124mNormalized_Dataset_EDU.csv[39m[38;5;124m'[39m)
+[1;32m      8[0m data[38;5;241m.[39mhead()
+
+[0;31mModuleNotFoundError[0m: No module named 'scipy'
+

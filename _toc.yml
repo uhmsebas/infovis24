@@ -4,5 +4,8 @@
 format: jb-book
 root: docs/home
 chapters:
-- file: docs/notebook
+- file: docs/preproc
+- file: docs/first_argument
+- file: docs/second_argument
+- file: docs/reflection
 - file: docs/workdistr

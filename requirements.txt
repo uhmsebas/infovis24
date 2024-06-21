@@ -6,3 +6,4 @@ pandas
 plotly
 seaborn
 scipy
+scipy.stats.mstats

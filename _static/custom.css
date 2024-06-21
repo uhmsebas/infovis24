@@ -1,6 +1,7 @@
 /* Change the hover color of links to orange */
 a:hover {
   color: orange !important;
+  text-decoration: none;
 }
 
 /* Style for the image container above the navbar */

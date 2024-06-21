@@ -15,178 +15,136 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import geopandas
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib
-from scipy.stats.mstats import winsorize
-data = gpd.read_file('Normalized_Dataset_EDU.csv')
-data.head()
-data['Value'] = pd.to_numeric(data['Value'], errors='coerce')
-data['Life expectancy'] = pd.to_numeric(data['Life expectancy'], errors='coerce')
 
+# Load the data
+df_life = pd.read_csv('life_expectancy.csv')
 
-# Laad de dataset met landen grenzen
+# Create a figure and axes for the subplots
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
 
-border = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+# Sort the DataFrame by 'Polio' column and plot
+df_life_sorted_polio = df_life.sort_values(by='Polio')
+ax1.bar(df_life_sorted_polio['Polio'], df_life_sorted_polio['Life expectancy'])
+ax1.set_xlabel('Polio Vaccination Rate')
+ax1.set_ylabel('Life Expectancy')
+ax1.set_title('Polio Vaccination Rate vs Life Expectancy')
 
-# Merge the non-spatial data with the spatial GeoDataFrame based on the country name
-# Assuming 'Country' in CSV and 'name' in border GeoDataFrame
-merged_data = border.merge(data, left_on='name', right_on='Country')
-# Plot histograms of the 'edu' and 'Life expectancy' columns
-bins = [0, 0.33, 0.66, 1]
+# Sort the DataFrame by 'Diphtheria' column and plot
+df_life_sorted_diphtheria = df_life.sort_values(by = 'Diphtheria')
+ax2.bar(df_life_sorted_diphtheria['Diphtheria'], df_life_sorted_diphtheria['Life expectancy'])
+ax2.set_xlabel('Diphtheria Vaccination Rate')
+ax2.set_ylabel('Life Expectancy')
+ax2.set_title('Diphtheria Vaccination Rate vs Life Expectancy')
 
-# Bin the first variable - x
-data['Var1_Class'] = pd.cut(data['Value'], bins=bins, include_lowest=True)
-data['Var1_Class'] = data['Var1_Class'].astype('str')
-
-# Bin the second variable - y
-data['Var2_Class'] = pd.cut(data['Life expectancy'], bins=bins, include_lowest=True)
-data['Var2_Class'] = data['Var2_Class'].astype('str')
-
-# Code created x bins to 1, 2, 3
-x_class_codes = np.arange(1, len(bins))
-d = dict(zip(data['Var1_Class'].value_counts().sort_index().index, x_class_codes))
-data['Var1_Class'] = data['Var1_Class'].replace(d)
-
-# Code created y bins to A, B, C
-y_class_codes = ['A', 'B', 'C']
-d = dict(zip(data['Var2_Class'].value_counts().sort_index().index, y_class_codes))
-data['Var2_Class'] = data['Var2_Class'].replace(d)
-
-# Combine x and y codes to create Bi_Class
-data['Bi_Class'] = data['Var1_Class'].astype('str') + data['Var2_Class']
-colors = ['#e8e8e8', # 1A
-          '#b0d5df', # 1B
-          '#64acbe', # 1C
-          '#e4acac', # 2A
-          '#ad9ea5', # 2B
-          '#627f8c', # 2C
-          '#c85a5a', # 3A
-          '#985356', # 3B
-          '#574249'] # 3C
-            
-from shapely.geometry import Point
-import contextily as ctx
-
-# Load the CSV file
-data = pd.read_csv('Normalized_Dataset_EDU.csv')
-
-# Convert the 'edu' and 'Life expectancy' columns to numeric
-data['Value'] = pd.to_numeric(data['Value'], errors='coerce')
-data['Life expectancy'] = pd.to_numeric(data['Life expectancy'], errors='coerce')
-
-# Load the dataset with country borders
-border = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
-border = border[border['name'] != 'Antarctica']
-# Merge the non-spatial data with the spatial GeoDataFrame based on the country name
-# Assuming 'Country' in CSV and 'name' in border GeoDataFrame
-merged_data = border.merge(data, left_on='name', right_on='Country')
-
-# Ensure the GeoDataFrame has a CRS set
-if merged_data.crs is None:
-    merged_data = merged_data.set_crs('EPSG:4326')  # Assuming WGS84
-
-# Add the 'Bi_Class' column to your data for bivariate choropleth (example here)
-# This should be defined according to your specific logic
-merged_data['Bi_Class'] = pd.qcut(merged_data['Value'], 3, labels=['low', 'medium', 'high']).astype(str) + \
-                          pd.qcut(merged_data['Life expectancy'], 3, labels=['_low', '_medium', '_high']).astype(str)
-
-# Define custom colors for each category
-category_colors = {
-    'low_low': '#ffffe5',  # low edu, low life expectancy
-    'low_medium': '#f7fcb9',  # low edu, medium life expectancy
-    'low_high': '#d9f0a3',  # low edu, high life expectancy
-    'medium_low': '#addd8e',  # medium edu, low life expectancy
-    'medium_medium': '#78c679',  # medium edu, medium life expectancy
-    'medium_high': '#41ab5d',  # medium edu, high life expectancy
-    'high_low': '#238443',  # high edu, low life expectancy
-    'high_medium': '#006837',  # high edu, medium life expectancy
-    'high_high': '#004529'  # high edu, high life expectancy
-}
-merged_data['color'] = merged_data['Bi_Class'].map(category_colors)
-
-# Create the plot
-fig, ax = plt.subplots(figsize=(8, 8))
-
-# Step 1: Draw the map
-border.to_crs('EPSG:3857').plot(ax=ax, facecolor='none', edgecolor='black', alpha=0.5)  # country borders
-merged_data.to_crs('EPSG:3857').plot(ax=ax,
-                                     column='Bi_Class',  # variable that is going to be used to color the map
-                                     legend=False,  # we're going to draw the legend ourselves
-                                     categorical=True,  # bivariate choropleth has to be colored as categorical map
-                                     color=merged_data['color'],
-                                     linewidth=0.5,
-                                     edgecolor='black',
-                                     legend_kwds={'loc': 'lower left'})  # position of legend
-
-# Add the basemap
-ctx.add_basemap(ax, source=ctx.providers.CartoDB.Positron)
-
-plt.tight_layout()  # "tighten" two figures map and basemap
-plt.axis('off')  # we don't need axis with coordinates
-ax.set_title('Education vs Life Expectancy Bivariate Choropleth')
-
-# Step 2: Draw the legend
-# Create a custom legend
-legend_handles = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=color, markersize=10, label=label)
-                  for label, color in category_colors.items()]
-ax.legend(handles=legend_handles, loc='lower left', title='Legend')
-
-plt.show()
-import matplotlib.ticker as mtick
-df = pd.read_csv("Normalized_Dataset_edu-prisectet.csv", usecols=['Year',"GDP", 'Country', "Value", "Indicator Name",  "Indicator Code", 'Life expectancy'])
-second_df = df[df["Indicator Name"].str.contains("Lower secondary completion rate") == True]
-third_df = df[df["Indicator Name"].str.contains("Primary completion rate") == True]
-second_df.to_csv("Normalized_Dataset_edu-prisectet1.csv", index=False)
-third_df.to_csv("Normalized_Dataset_edu-prisectet2.csv", index=False)
-plt.scatter(second_df['Value'], second_df['Life expectancy'], alpha=0.3, c='green', label='Lower secondary completion rate')
-plt.scatter(third_df['Value'], third_df['Life expectancy'], alpha=0.3, c='red', label='Primary completion rate')
-plt.xlabel('Completion rate (normalized)')
-plt.ylabel('Life Expectancy (normalized)')
-plt.title('Education vs. Life Expectancy')
-
-x_clean = second_df['Value']
-y_clean = second_df['Life expectancy']
-
-# Performing linear regression
-slope, intercept = np.polyfit(x_clean, y_clean, 1)
-
-# Calculate the values of the regression line
-regression_line = slope * x_clean + intercept
-
-# Create a combined scatter plot with the regression line
-plt.plot(x_clean, regression_line, color='green', label='Regression Line Secondary')
-
-x_clean = third_df['Value']
-y_clean = third_df['Life expectancy']
-
-# Performing linear regression
-slope, intercept = np.polyfit(x_clean, y_clean, 1)
-
-# Calculate the values of the regression line
-regression_line = slope * x_clean + intercept
-ax = plt.subplot(1,1,1)
-# Create a combined scatter plot with the regression line
-ax.xaxis.set_major_formatter(mtick.PercentFormatter(1.0))
-
-plt.plot(x_clean, regression_line, color='red', label='Regression Line Primary')
-plt.legend()
+# Adjust layout to prevent overlap
 plt.tight_layout()
-plt.show()
 
+# Show the plot
+plt.show()
+import plotly.express as px
+import pandas as pd
+
+# Read the CSV file into a DataFrame
+df = pd.read_csv('life_expectancy.csv')
+
+# Drop rows with NaN values in Population (if applicable)
+df = df.dropna(subset=['Population'])
+
+# Ensure that 'Country' and 'Year' are present as columns
+years_sorted = sorted(df['Year'].unique())
+
+# Create the scatter plot with Plotly Express
+fig = px.scatter(df, 
+                 x='Polio', 
+                 y='Life expectancy', 
+                 animation_frame='Year', 
+                 animation_group='Country',
+                 size='Population', 
+                 color='Country', 
+                 hover_name='Country',
+                 size_max=150, 
+                 range_x=[0, 100], 
+                 range_y=[25, 90],
+                 category_orders={'Year': years_sorted})
+
+# Update the layout with x-axis titles and other configurations
+fig.update_layout(
+    title="Life Expectancy vs Vaccination Rates",
+    xaxis=dict(title='Polio Vaccination Rate'),   # Initial x-axis title
+    yaxis=dict(title='Life Expectancy'),          # y-axis title
+    showlegend=True,
+)
+
+# Show the plot
+fig.show()
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[1], line 7[0m
-[1;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m
-[1;32m      6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mstats[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmstats[39;00m [38;5;28;01mimport[39;00m winsorize
-[0;32m----> 7[0m data [38;5;241m=[39m [43mgpd[49m[38;5;241m.[39mread_file([38;5;124m'[39m[38;5;124mNormalized_Dataset_EDU.csv[39m[38;5;124m'[39m)
-[1;32m      8[0m data[38;5;241m.[39mhead()
-[1;32m      9[0m data[[38;5;124m'[39m[38;5;124mValue[39m[38;5;124m'[39m] [38;5;241m=[39m pd[38;5;241m.[39mto_numeric(data[[38;5;124m'[39m[38;5;124mValue[39m[38;5;124m'[39m], errors[38;5;241m=[39m[38;5;124m'[39m[38;5;124mcoerce[39m[38;5;124m'[39m)
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [0;32mIn[3], line 5[0m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      4[0m [38;5;66;03m# Load the data[39;00m
+[0;32m----> 5[0m df_life [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_csv[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mlife_expectancy.csv[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m      7[0m [38;5;66;03m# Create a figure and axes for the subplots[39;00m
+[1;32m      8[0m fig, (ax1, ax2) [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m2[39m, [38;5;241m1[39m, figsize[38;5;241m=[39m([38;5;241m10[39m, [38;5;241m10[39m))
 
-[0;31mNameError[0m: name 'gpd' is not defined
+File [0;32m~/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1026[0m, in [0;36mread_csv[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)[0m
+[1;32m   1013[0m kwds_defaults [38;5;241m=[39m _refine_defaults_read(
+[1;32m   1014[0m     dialect,
+[1;32m   1015[0m     delimiter,
+[0;32m   (...)[0m
+[1;32m   1022[0m     dtype_backend[38;5;241m=[39mdtype_backend,
+[1;32m   1023[0m )
+[1;32m   1024[0m kwds[38;5;241m.[39mupdate(kwds_defaults)
+[0;32m-> 1026[0m [38;5;28;01mreturn[39;00m [43m_read[49m[43m([49m[43mfilepath_or_buffer[49m[43m,[49m[43m [49m[43mkwds[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:620[0m, in [0;36m_read[0;34m(filepath_or_buffer, kwds)[0m
+[1;32m    617[0m _validate_names(kwds[38;5;241m.[39mget([38;5;124m"[39m[38;5;124mnames[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m))
+[1;32m    619[0m [38;5;66;03m# Create the parser.[39;00m
+[0;32m--> 620[0m parser [38;5;241m=[39m [43mTextFileReader[49m[43m([49m[43mfilepath_or_buffer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwds[49m[43m)[49m
+[1;32m    622[0m [38;5;28;01mif[39;00m chunksize [38;5;129;01mor[39;00m iterator:
+[1;32m    623[0m     [38;5;28;01mreturn[39;00m parser
+
+File [0;32m~/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1620[0m, in [0;36mTextFileReader.__init__[0;34m(self, f, engine, **kwds)[0m
+[1;32m   1617[0m     [38;5;28mself[39m[38;5;241m.[39moptions[[38;5;124m"[39m[38;5;124mhas_index_names[39m[38;5;124m"[39m] [38;5;241m=[39m kwds[[38;5;124m"[39m[38;5;124mhas_index_names[39m[38;5;124m"[39m]
+[1;32m   1619[0m [38;5;28mself[39m[38;5;241m.[39mhandles: IOHandles [38;5;241m|[39m [38;5;28;01mNone[39;00m [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[0;32m-> 1620[0m [38;5;28mself[39m[38;5;241m.[39m_engine [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_make_engine[49m[43m([49m[43mf[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mengine[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1880[0m, in [0;36mTextFileReader._make_engine[0;34m(self, f, engine)[0m
+[1;32m   1878[0m     [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m mode:
+[1;32m   1879[0m         mode [38;5;241m+[39m[38;5;241m=[39m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m
+[0;32m-> 1880[0m [38;5;28mself[39m[38;5;241m.[39mhandles [38;5;241m=[39m [43mget_handle[49m[43m([49m
+[1;32m   1881[0m [43m    [49m[43mf[49m[43m,[49m
+[1;32m   1882[0m [43m    [49m[43mmode[49m[43m,[49m
+[1;32m   1883[0m [43m    [49m[43mencoding[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mencoding[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
+[1;32m   1884[0m [43m    [49m[43mcompression[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mcompression[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
+[1;32m   1885[0m [43m    [49m[43mmemory_map[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mmemory_map[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m[43m,[49m
+[1;32m   1886[0m [43m    [49m[43mis_text[49m[38;5;241;43m=[39;49m[43mis_text[49m[43m,[49m
+[1;32m   1887[0m [43m    [49m[43merrors[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mencoding_errors[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mstrict[39;49m[38;5;124;43m"[39;49m[43m)[49m[43m,[49m
+[1;32m   1888[0m [43m    [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mstorage_options[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
+[1;32m   1889[0m [43m[49m[43m)[49m
+[1;32m   1890[0m [38;5;28;01massert[39;00m [38;5;28mself[39m[38;5;241m.[39mhandles [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[1;32m   1891[0m f [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mhandles[38;5;241m.[39mhandle
+
+File [0;32m~/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/pandas/io/common.py:873[0m, in [0;36mget_handle[0;34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)[0m
+[1;32m    868[0m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(handle, [38;5;28mstr[39m):
+[1;32m    869[0m     [38;5;66;03m# Check whether the filename is to be opened in binary mode.[39;00m
+[1;32m    870[0m     [38;5;66;03m# Binary mode does not support 'encoding' and 'newline'.[39;00m
+[1;32m    871[0m     [38;5;28;01mif[39;00m ioargs[38;5;241m.[39mencoding [38;5;129;01mand[39;00m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m ioargs[38;5;241m.[39mmode:
+[1;32m    872[0m         [38;5;66;03m# Encoding[39;00m
+[0;32m--> 873[0m         handle [38;5;241m=[39m [38;5;28;43mopen[39;49m[43m([49m
+[1;32m    874[0m [43m            [49m[43mhandle[49m[43m,[49m
+[1;32m    875[0m [43m            [49m[43mioargs[49m[38;5;241;43m.[39;49m[43mmode[49m[43m,[49m
+[1;32m    876[0m [43m            [49m[43mencoding[49m[38;5;241;43m=[39;49m[43mioargs[49m[38;5;241;43m.[39;49m[43mencoding[49m[43m,[49m
+[1;32m    877[0m [43m            [49m[43merrors[49m[38;5;241;43m=[39;49m[43merrors[49m[43m,[49m
+[1;32m    878[0m [43m            [49m[43mnewline[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m    879[0m [43m        [49m[43m)[49m
+[1;32m    880[0m     [38;5;28;01melse[39;00m:
+[1;32m    881[0m         [38;5;66;03m# Binary mode[39;00m
+[1;32m    882[0m         handle [38;5;241m=[39m [38;5;28mopen[39m(handle, ioargs[38;5;241m.[39mmode)
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'life_expectancy.csv'
 

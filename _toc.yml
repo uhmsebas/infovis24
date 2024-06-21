@@ -9,5 +9,3 @@ chapters:
 - file: docs/second_argument
 - file: docs/reflection
 - file: docs/workdistr
-
-show_navbar_contents: false

@@ -17,6 +17,7 @@ a:hover {
 
 .plot-container {
   border: 25px solid #fdead4;
+  width: 100%;
   padding: 20px; 
   background-color: #fdead4; 
   text-align: center;

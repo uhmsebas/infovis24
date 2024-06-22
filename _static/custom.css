@@ -1,3 +1,7 @@
+::after, ::before {
+  box-sizing: border-box;
+}
+
 /* Change the hover color of links to orange */
 a:hover {
   color: orange !important;

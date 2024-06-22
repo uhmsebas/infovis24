@@ -15,14 +15,12 @@ a:hover {
   height: auto;
 }
 
-.output {
+.plot-container {
   border-radius: 23px;
   width: 90%;
-  border: solid 25px #fdead4;
-  padding: 30px; 
+  border: solid 5px #fdead4;
+  padding: 12px; 
   background-color: #fdead4; 
-  text-align: center;
-  margin: 20px auto;
 }
 
 .plot-description {

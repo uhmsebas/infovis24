@@ -16,11 +16,12 @@ a:hover {
 }
 
 .plot-container {
-  border: 5px solid #f5d99c; /* Orange/yellowish border */
-  padding: 20px; /* Space between border and plot */
-  background-color: #fdf4e3; /* Light orange background */
+  border: 25px solid #fdead4;
+  width: 100%;
+  padding: 20px; 
+  background-color: #fdead4; 
   text-align: center;
-  margin: 20px auto; /* Center the container with margins */
+  margin: 20px auto; 
 }
 
 .plot-description {

@@ -17,11 +17,10 @@ a:hover {
 
 .plot-container {
   border-radius: 23px;
-  width: 90%;
-  padding: 30px; 
-  background-color: #fdead4; 
-  text-align: center;
-  margin: 20px auto; 
+  border: solid 5px #fdead4;
+  padding: 12px; 
+  background-color: #fdead4;
+  box-sizing: content-box;
 }
 
 .plot-description {

@@ -14,3 +14,19 @@ a:hover {
   max-width: 100%;
   height: auto;
 }
+
+.plot-container {
+  border: 5px solid #f5d99c; /* Orange/yellowish border */
+  padding: 20px; /* Space between border and plot */
+  background-color: #fdf4e3; /* Light orange background */
+  text-align: center;
+  margin: 20px auto; /* Center the container with margins */
+}
+
+.plot-description {
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}

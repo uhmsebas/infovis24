@@ -15,7 +15,7 @@ a:hover {
   height: auto;
 }
 
-.plotly-graph-div {
+.output {
   border-radius: 23px;
   width: 90%;
   border: solid 25px #fdead4;

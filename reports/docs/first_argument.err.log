@@ -16,80 +16,116 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 import pandas as pd
-import matplotlib.pyplot as plt
+import geopandas as gpd
+import plotly.graph_objects as go
 
-# Load the data
-df_life = pd.read_csv('life_expectancy.csv')
+# Load the CSV file
+data = pd.read_csv('Normalized_Dataset_EDU.csv')
 
-# Create a figure and axes for the subplots
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
+# Convert the 'GDP' and 'Life expectancy' columns to numeric
+data['Value'] = pd.to_numeric(data['Value'], errors='coerce')
+data['Life expectancy'] = pd.to_numeric(data['Life expectancy'], errors='coerce')
 
-# Sort the DataFrame by 'Polio' column and plot
-df_life_sorted_polio = df_life.sort_values(by='Polio')
-ax1.bar(df_life_sorted_polio['Polio'], df_life_sorted_polio['Life expectancy'])
-ax1.set_xlabel('Polio Vaccination Rate')
-ax1.set_ylabel('Life Expectancy')
-ax1.set_title('Polio Vaccination Rate vs Life Expectancy')
+# Load the dataset with country borders
+border = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+border = border[border['name'] != 'Antarctica']
 
-# Sort the DataFrame by 'Diphtheria' column and plot
-df_life_sorted_diphtheria = df_life.sort_values(by = 'Diphtheria')
-ax2.bar(df_life_sorted_diphtheria['Diphtheria'], df_life_sorted_diphtheria['Life expectancy'])
-ax2.set_xlabel('Diphtheria Vaccination Rate')
-ax2.set_ylabel('Life Expectancy')
-ax2.set_title('Diphtheria Vaccination Rate vs Life Expectancy')
+# Merge the non-spatial data with the spatial GeoDataFrame based on the country name
+merged_data = border.merge(data, left_on='name', right_on='Country')
 
-# Adjust layout to prevent overlap
-plt.tight_layout()
+# Ensure the GeoDataFrame has a CRS set
+if merged_data.crs is None:
+    merged_data = merged_data.set_crs('EPSG:4326')  # Assuming WGS84
 
-# Show the plot
-plt.show()
-import plotly.express as px
-import pandas as pd
+# Add the 'Bi_Class' column to your data for bivariate choropleth
+merged_data['Bi_Class'] = pd.qcut(merged_data['Value'], 3, labels=['low', 'medium', 'high']).astype(str) + \
+                          pd.qcut(merged_data['Life expectancy'], 3, labels=['_low', '_medium', '_high']).astype(str)
 
-# Read the CSV file into a DataFrame
-df = pd.read_csv('life_expectancy.csv')
+# Define custom colors for each category with ordered keys
+ordered_categories = ['low_low', 'low_medium', 'low_high',
+                      'medium_low', 'medium_medium', 'medium_high',
+                      'high_low', 'high_medium', 'high_high']
+category_colors = {
+    'low_low': '#ffffe5',  # low GDP, low life expectancy
+    'low_medium': '#f7fcb9',  # low GDP, medium life expectancy
+    'low_high': '#d9f0a3',  # low GDP, high life expectancy
+    'medium_low': '#addd8e',  # medium GDP, low life expectancy
+    'medium_medium': '#78c679',  # medium GDP, medium life expectancy
+    'medium_high': '#41ab5d',  # medium GDP, high life expectancy
+    'high_low': '#238443',  # high GDP, low life expectancy
+    'high_medium': '#006837',  # high GDP, medium life expectancy
+    'high_high': '#004529'  # high GDP, high life expectancy
+}
+merged_data['color'] = merged_data['Bi_Class'].map(category_colors)
 
-# Drop rows with NaN values in Population (if applicable)
-df = df.dropna(subset=['Population'])
+# Prepare the data for Plotly
+merged_data['iso_a3'] = merged_data['iso_a3'].apply(lambda x: x if x != -99 else None)
 
-# Ensure that 'Country' and 'Year' are present as columns
-years_sorted = sorted(df['Year'].unique())
+# Create the Plotly figure
+fig = go.Figure()
 
-# Create the scatter plot with Plotly Express
-fig = px.scatter(df, 
-                 x='Polio', 
-                 y='Life expectancy', 
-                 animation_frame='Year', 
-                 animation_group='Country',
-                 size='Population', 
-                 color='Country', 
-                 hover_name='Country',
-                 size_max=150, 
-                 range_x=[0, 100], 
-                 range_y=[25, 90],
-                 category_orders={'Year': years_sorted})
+# Add choropleth traces in the order of the categories
+for category in ordered_categories:
+    subset = merged_data[merged_data['Bi_Class'] == category]
+    fig.add_trace(go.Choropleth(
+        locations=subset['iso_a3'],
+        z=subset['Value'],  # Here, use GDP for the color intensity
+        text=subset.apply(lambda row: f"{row['name']}<br>Bi-Class: {row['Bi_Class']}<br>GDP: {row['Value']}<br>Life Expectancy: {row['Life expectancy']}", axis=1),
+        hoverinfo='text',
+        geo='geo',
+        colorscale=[[0, category_colors[category]], [1, category_colors[category]]],
+        showscale=False,
+        name=category.replace('_low', '_Low Education & L.E').replace('_medium', '_Medium Education & L.E').replace('_high', '_High Education & L.E').replace('low', 'Low Education').replace('medium', 'Medium Education').replace('high', 'High Education')  # Update the category name
+    ))
 
-# Update the layout with x-axis titles and other configurations
-fig.update_layout(
-    title="Life Expectancy vs Vaccination Rates",
-    xaxis=dict(title='Polio Vaccination Rate'),   # Initial x-axis title
-    yaxis=dict(title='Life Expectancy'),          # y-axis title
-    showlegend=True,
+# Add custom legend using scattergeo
+for category in ordered_categories:
+    fig.add_trace(go.Scattergeo(
+        locationmode='ISO-3',
+        locations=[None],  # No actual points, just for the legend
+        marker=dict(
+            size=10,
+            color=category_colors[category],
+        ),
+        showlegend=True,
+        name=category.replace('_low', '_Low L.E').replace('_medium', '_Medium L.E').replace('_high', '_High L.E').replace('low', 'Low Education').replace('medium', 'Medium Education').replace('high', 'High Education')  # Update the category name
+    ))
+
+# Update the layout for better appearance
+fig.update_geos(
+    showcountries=True,
+    countrycolor="black",
+    showcoastlines=True,
+    coastlinecolor="black",
+    projection_type="natural earth"
 )
 
-# Show the plot
+fig.update_layout(
+    title_text='Education vs Life Expectancy Bivariate Choropleth',
+    margin={"r":0, "t":50, "l":0, "b":0},
+    legend=dict(
+        title="Categories",
+        traceorder='normal'  # Ensure the legend follows the trace order
+    ),
+    geo=dict(
+        lakecolor='#FFFFFF',
+        bgcolor='#a8d5f2'  # Set the water color to #a8d5f2
+    )
+)
+
+# Show the figure
 fig.show()
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-Cell [0;32mIn[3], line 5[0m
-[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[1;32m      4[0m [38;5;66;03m# Load the data[39;00m
-[0;32m----> 5[0m df_life [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_csv[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mlife_expectancy.csv[39;49m[38;5;124;43m'[39;49m[43m)[49m
-[1;32m      7[0m [38;5;66;03m# Create a figure and axes for the subplots[39;00m
-[1;32m      8[0m fig, (ax1, ax2) [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m2[39m, [38;5;241m1[39m, figsize[38;5;241m=[39m([38;5;241m10[39m, [38;5;241m10[39m))
+Cell [0;32mIn[1], line 6[0m
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mplotly[39;00m[38;5;21;01m.[39;00m[38;5;21;01mgraph_objects[39;00m [38;5;28;01mas[39;00m [38;5;21;01mgo[39;00m
+[1;32m      5[0m [38;5;66;03m# Load the CSV file[39;00m
+[0;32m----> 6[0m data [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_csv[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mNormalized_Dataset_EDU.csv[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m      8[0m [38;5;66;03m# Convert the 'GDP' and 'Life expectancy' columns to numeric[39;00m
+[1;32m      9[0m data[[38;5;124m'[39m[38;5;124mValue[39m[38;5;124m'[39m] [38;5;241m=[39m pd[38;5;241m.[39mto_numeric(data[[38;5;124m'[39m[38;5;124mValue[39m[38;5;124m'[39m], errors[38;5;241m=[39m[38;5;124m'[39m[38;5;124mcoerce[39m[38;5;124m'[39m)
 
 File [0;32m~/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1026[0m, in [0;36mread_csv[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)[0m
 [1;32m   1013[0m kwds_defaults [38;5;241m=[39m _refine_defaults_read(
@@ -146,5 +182,5 @@ File [0;32m~/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/pandas/io
 [1;32m    881[0m         [38;5;66;03m# Binary mode[39;00m
 [1;32m    882[0m         handle [38;5;241m=[39m [38;5;28mopen[39m(handle, ioargs[38;5;241m.[39mmode)
 
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'life_expectancy.csv'
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'Normalized_Dataset_EDU.csv'
 

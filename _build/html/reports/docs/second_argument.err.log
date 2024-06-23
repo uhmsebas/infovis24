@@ -43,48 +43,12 @@ plt.tight_layout()
 
 # Show the plot
 plt.show()
-import plotly.express as px
-import pandas as pd
-
-# Read the CSV file into a DataFrame
-df = pd.read_csv('life_expectancy.csv')
-
-# Drop rows with NaN values in Population (if applicable)
-df = df.dropna(subset=['Population'])
-
-# Ensure that 'Country' and 'Year' are present as columns
-years_sorted = sorted(df['Year'].unique())
-
-# Create the scatter plot with Plotly Express
-fig = px.scatter(df, 
-                 x='Polio', 
-                 y='Life expectancy', 
-                 animation_frame='Year', 
-                 animation_group='Country',
-                 size='Population', 
-                 color='Country', 
-                 hover_name='Country',
-                 size_max=150, 
-                 range_x=[0, 100], 
-                 range_y=[25, 90],
-                 category_orders={'Year': years_sorted})
-
-# Update the layout with x-axis titles and other configurations
-fig.update_layout(
-    title="Life Expectancy vs Vaccination Rates",
-    xaxis=dict(title='Polio Vaccination Rate'),   # Initial x-axis title
-    yaxis=dict(title='Life Expectancy'),          # y-axis title
-    showlegend=True,
-)
-
-# Show the plot
-fig.show()
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-Cell [0;32mIn[1], line 5[0m
+Cell [0;32mIn[2], line 5[0m
 [1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
 [1;32m      4[0m [38;5;66;03m# Load the data[39;00m
 [0;32m----> 5[0m df_life [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_csv[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mlife_expectancy.csv[39;49m[38;5;124;43m'[39;49m[43m)[49m

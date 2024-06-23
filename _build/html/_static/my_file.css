@@ -34,9 +34,9 @@ nav.bd-links li > a:focus {
 }
 
 code.literal {
-  background-color: #fdebd3;
+  background-color: #e6ffe6;
   color: #333a42;
-  border: 1px solid #d8bea1;
+  border: 1px solid #e6ffe687;
 }
 
 .logo__image {

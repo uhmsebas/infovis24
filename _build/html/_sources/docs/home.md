@@ -1,8 +1,8 @@
 # Introduction
 
-Over the past couple of decades, life expectancy has been increasing among industrialized countries. Yet, the question begs which factors contributed to such increase
+Over the past couple of decades, life expectancy has been increasing rapidly among industrialized countries. The question not only begs for how long this trend will continue, but also what factors contribute to such an extraordinarily fast increase. Life expectancy is one of the core statistics that make a nation attractive to live in. This is why it is essential to perform research on what factors contribute to this statistic. An argument can be made that life expectancy is solely based on a nation's level of education, but to what extend is this claim true?
 
-But if we want to increase it even further, where should we invest the most? In this project, we will research whether education should be at the top of the investment list or if we should invest in a different area, such as vaccines. We will answer this by examining the correlation between GDP, education, vaccines, and life expectancy. The data that is used for this correlation is from Kaggle and the world bank.
+The question whether education should be a top priority of investment or not will be explored in this data story. Using various data visualization techniques, different key factors of countries can be explored to find useful correlations. The data used in these visualizations are taken from [World Data Bank](https://datacatalog.worldbank.org/home), ??? and [Our World in Data](https://ourworldindata.org/life-expectancy).
 
 **Authors**
 Team number: I2

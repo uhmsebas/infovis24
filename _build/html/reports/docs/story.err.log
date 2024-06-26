@@ -1,0 +1,81 @@
+Traceback (most recent call last):
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/sebastiaan/miniconda3/envs/jupyterbook/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import pandas as pd
+import plotly.graph_objs as go
+from scipy.optimize import curve_fit
+from scipy.stats import zscore
+import matplotlib.pyplot as plt
+
+def log_func(x, a, b):
+    return a * np.log(x) + b
+
+
+# Calculate the z-scores of the data
+second_df['z_score_GDP'] = zscore(second_df['GDP'])
+second_df['z_score_Value'] = zscore(second_df['Value'])
+
+# Define a threshold to identify outliers
+threshold = 6
+
+# Filter the data to remove outliers
+filtered_df = second_df[(np.abs(second_df['z_score_GDP']) < threshold) & (np.abs(second_df['z_score_Value']) < threshold)]
+
+# Extract cleaned data for fitting
+x_cleaned = filtered_df["GDP"].values
+y_cleaned = filtered_df["Value"].values
+
+# Fit the data to the logarithmic function
+popt, pcov = curve_fit(log_func, x_cleaned, y_cleaned)
+
+# Generate x values for the fitted line
+x_fit = np.linspace(min(x_cleaned), max(x_cleaned), 100)
+y_fit = log_func(x_fit, *popt)
+
+# Plot using Plotly
+scatter = go.Scatter(x=filtered_df["GDP"], y=filtered_df["Value"], mode='markers', name='Data')
+line = go.Scatter(x=x_fit, y=y_fit, mode='lines', name='Fit', line=dict(color='red'))
+
+layout = go.Layout(title='GDP vs. Life Expectancy (Outliers Removed)',
+                   xaxis=dict(title='GDP (normalized)'),
+                   yaxis=dict(title='Completion rate (normalized)'))
+
+
+# Optionally, you can use matplotlib to show the fit
+plt.scatter(filtered_df['GDP'], filtered_df['Value'], alpha=0.3, c='green', label='Data')
+plt.plot(x_fit, y_fit, color='red', label='Fit')
+plt.xlabel('GDP (normalized)')
+plt.ylabel('Lower secondary completion rate (normalized)')
+plt.title('GDP vs. Education')
+plt.legend()
+plt.tight_layout()
+plt.show()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[4], line 13[0m
+[1;32m      9[0m     [38;5;28;01mreturn[39;00m a [38;5;241m*[39m np[38;5;241m.[39mlog(x) [38;5;241m+[39m b
+[1;32m     12[0m [38;5;66;03m# Calculate the z-scores of the data[39;00m
+[0;32m---> 13[0m second_df[[38;5;124m'[39m[38;5;124mz_score_GDP[39m[38;5;124m'[39m] [38;5;241m=[39m zscore([43msecond_df[49m[[38;5;124m'[39m[38;5;124mGDP[39m[38;5;124m'[39m])
+[1;32m     14[0m second_df[[38;5;124m'[39m[38;5;124mz_score_Value[39m[38;5;124m'[39m] [38;5;241m=[39m zscore(second_df[[38;5;124m'[39m[38;5;124mValue[39m[38;5;124m'[39m])
+[1;32m     16[0m [38;5;66;03m# Define a threshold to identify outliers[39;00m
+
+[0;31mNameError[0m: name 'second_df' is not defined
+

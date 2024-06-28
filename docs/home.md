@@ -4,7 +4,7 @@ Over the past couple of decades, life expectancy has been increasing rapidly amo
 
 The question whether education should be a top priority of investment or not will be explored in this data story. Using various data visualization techniques, different key factors of countries can be explored to find useful correlations. The data used in these visualizations are taken from [World Data Bank](https://datacatalog.worldbank.org/home), ??? and [Our World in Data](https://ourworldindata.org/life-expectancy).
 
-**Authors**
+**Authors**<br>
 Team number: I2
 
 - Thijn van Veen, 15258556

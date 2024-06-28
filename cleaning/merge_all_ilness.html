@@ -1,0 +1,5297 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>extra merging for gdp and infant death &#8212; Education and Life Expectancy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5786e64d" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cleaning/merge_all_ilness';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../docs/home.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Education and Life Expectancy</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../docs/home.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../docs/preproc.html">Dataset and preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/story.html">Predicting life expectancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/reflection.html">Reflection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/workdistr.html">Work distribution</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/uhmsebas/infovis24/blob/main/docs/cleaning/merge_all_ilness.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uhmsebas/infovis24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uhmsebas/infovis24/issues/new?title=Issue%20on%20page%20%2Fcleaning/merge_all_ilness.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/cleaning/merge_all_ilness.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>extra merging for gdp and infant death</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pycountry</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pycountry</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pycountry&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data from the CSV and excel file</span>
+<span class="n">df_polio</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;polio.xlsx&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;openpyxl&#39;</span><span class="p">)</span>
+<span class="n">df_measles</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;mesles.xlsx&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;openpyxl&#39;</span><span class="p">)</span>
+<span class="n">df_diphtheria</span> <span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;Diphtheria.xlsx&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;openpyxl&#39;</span><span class="p">)</span>
+<span class="n">df_contnent</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;list-of-countries-by-continent-2024.csv&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_polio</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_measles</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_diphtheria</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_contnent</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GROUP</th>
+      <th>CODE</th>
+      <th>NAME</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>COVERAGE_CATEGORY</th>
+      <th>COVERAGE_CATEGORY_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>Afghanistan</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>84.69</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>Albania</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>COUNTRIES</td>
+      <td>DZA</td>
+      <td>Algeria</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>88.25</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>COUNTRIES</td>
+      <td>AND</td>
+      <td>Andorra</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>COUNTRIES</td>
+      <td>AGO</td>
+      <td>Angola</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>81.38</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>25714</th>
+      <td>WHO_REGIONS</td>
+      <td>WPR</td>
+      <td>Western Pacific Region</td>
+      <td>1980.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>28240789.0</td>
+      <td>1308554.0</td>
+      <td>5.00</td>
+    </tr>
+    <tr>
+      <th>25715</th>
+      <td>COUNTRIES</td>
+      <td>YEM</td>
+      <td>Yemen</td>
+      <td>1980.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>25716</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>Zambia</td>
+      <td>1980.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25717</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>Zimbabwe</td>
+      <td>1980.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25718</th>
+      <td>Exported: 2024-19-6 20:41 UTC</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>25719 rows × 11 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GROUP</th>
+      <th>CODE</th>
+      <th>NAME</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>COVERAGE_CATEGORY</th>
+      <th>COVERAGE_CATEGORY_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>Afghanistan</td>
+      <td>2023.0</td>
+      <td>MCV2</td>
+      <td>Measles-containing vaccine, 2nd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1962370.0</td>
+      <td>1179611.0</td>
+      <td>60.11</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>Afghanistan</td>
+      <td>2023.0</td>
+      <td>MCV1</td>
+      <td>Measles-containing vaccine, 1st dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1962370.0</td>
+      <td>1522396.0</td>
+      <td>77.58</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>Albania</td>
+      <td>2023.0</td>
+      <td>MCV2</td>
+      <td>Measles-containing vaccine, 2nd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>23465.0</td>
+      <td>21819.0</td>
+      <td>92.99</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>Albania</td>
+      <td>2023.0</td>
+      <td>MCV1</td>
+      <td>Measles-containing vaccine, 1st dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>23919.0</td>
+      <td>19920.0</td>
+      <td>83.28</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>COUNTRIES</td>
+      <td>DZA</td>
+      <td>Algeria</td>
+      <td>2023.0</td>
+      <td>MCV1</td>
+      <td>Measles-containing vaccine, 1st dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>925447.0</td>
+      <td>913681.0</td>
+      <td>98.73</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>44545</th>
+      <td>WHO_REGIONS</td>
+      <td>WPR</td>
+      <td>Western Pacific Region</td>
+      <td>1980.0</td>
+      <td>MCV1</td>
+      <td>Measles-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>28240789.0</td>
+      <td>1206337.0</td>
+      <td>4.00</td>
+    </tr>
+    <tr>
+      <th>44546</th>
+      <td>COUNTRIES</td>
+      <td>YEM</td>
+      <td>Yemen</td>
+      <td>1980.0</td>
+      <td>MCV1</td>
+      <td>Measles-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <th>44547</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>Zambia</td>
+      <td>1980.0</td>
+      <td>MCV1</td>
+      <td>Measles-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44548</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>Zimbabwe</td>
+      <td>1980.0</td>
+      <td>MCV1</td>
+      <td>Measles-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44549</th>
+      <td>Exported: 2024-19-6 20:41 UTC</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>44550 rows × 11 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GROUP</th>
+      <th>CODE</th>
+      <th>NAME</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>COVERAGE_CATEGORY</th>
+      <th>COVERAGE_CATEGORY_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>Afghanistan</td>
+      <td>2023.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1962370.0</td>
+      <td>1692613.0</td>
+      <td>86.25</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>Afghanistan</td>
+      <td>2023.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1962370.0</td>
+      <td>1891030.0</td>
+      <td>96.36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>Albania</td>
+      <td>2023.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>22887.0</td>
+      <td>22448.0</td>
+      <td>98.08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>Albania</td>
+      <td>2023.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>22368.0</td>
+      <td>21729.0</td>
+      <td>97.14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>COUNTRIES</td>
+      <td>DZA</td>
+      <td>Algeria</td>
+      <td>2023.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>925447.0</td>
+      <td>849223.0</td>
+      <td>91.76</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>44815</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>Zambia</td>
+      <td>1980.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44816</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>Zambia</td>
+      <td>1980.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44817</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>Zimbabwe</td>
+      <td>1980.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44818</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>Zimbabwe</td>
+      <td>1980.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44819</th>
+      <td>Exported: 2024-19-6 20:40 UTC</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>44820 rows × 11 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>unMember</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>India</td>
+      <td>Asia</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>China</td>
+      <td>Asia</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>United States</td>
+      <td>North America</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Indonesia</td>
+      <td>Asia</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Pakistan</td>
+      <td>Asia</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>229</th>
+      <td>Montserrat</td>
+      <td>North America</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>230</th>
+      <td>Falkland Islands</td>
+      <td>South America</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>231</th>
+      <td>Niue</td>
+      <td>Oceania</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>232</th>
+      <td>Tokelau</td>
+      <td>Oceania</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>233</th>
+      <td>Vatican City</td>
+      <td>Europe</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>234 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#concatenate the dataframes</span>
+<span class="n">df_illness</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_polio</span><span class="p">,</span> <span class="n">df_measles</span><span class="p">,</span> <span class="n">df_diphtheria</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_illness</span><span class="p">)</span>
+<span class="n">df_illness</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;allillnesses.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GROUP</th>
+      <th>CODE</th>
+      <th>NAME</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>COVERAGE_CATEGORY</th>
+      <th>COVERAGE_CATEGORY_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>Afghanistan</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>84.69</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>Albania</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>COUNTRIES</td>
+      <td>DZA</td>
+      <td>Algeria</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>88.25</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>COUNTRIES</td>
+      <td>AND</td>
+      <td>Andorra</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>COUNTRIES</td>
+      <td>AGO</td>
+      <td>Angola</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>81.38</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>44815</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>Zambia</td>
+      <td>1980.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44816</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>Zambia</td>
+      <td>1980.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44817</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>Zimbabwe</td>
+      <td>1980.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44818</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>Zimbabwe</td>
+      <td>1980.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44819</th>
+      <td>Exported: 2024-19-6 20:40 UTC</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>115089 rows × 11 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#change the country names to the standard names</span>
+<span class="k">def</span> <span class="nf">standardize_country_name</span><span class="p">(</span><span class="n">country_name</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Attempt to get the standard country name</span>
+        <span class="n">country</span> <span class="o">=</span> <span class="n">pycountry</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">country_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">country</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">except</span> <span class="ne">LookupError</span><span class="p">:</span>
+        <span class="c1"># Return the original name if no match is found</span>
+        <span class="k">return</span> <span class="n">country_name</span>
+
+<span class="c1"># Apply the function to the datasets</span>
+<span class="n">df_illness</span><span class="p">[</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_illness</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">standardize_country_name</span><span class="p">)</span>
+<span class="n">df_contnent</span><span class="p">[</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_contnent</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">standardize_country_name</span><span class="p">)</span>
+<span class="c1">#drop replaced columns</span>
+<span class="n">df_illness</span> <span class="o">=</span> <span class="n">df_illness</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">])</span>
+<span class="n">df_contnent</span> <span class="o">=</span> <span class="n">df_contnent</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_illness</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_contnent</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GROUP</th>
+      <th>CODE</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>COVERAGE_CATEGORY</th>
+      <th>COVERAGE_CATEGORY_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+      <th>standardized_country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>84.69</td>
+      <td>Afghanistan</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Albania</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>COUNTRIES</td>
+      <td>DZA</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>88.25</td>
+      <td>Algeria</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>COUNTRIES</td>
+      <td>AND</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Andorra</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>COUNTRIES</td>
+      <td>AGO</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>81.38</td>
+      <td>Angola</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>44815</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>1980.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+    </tr>
+    <tr>
+      <th>44816</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>1980.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+    </tr>
+    <tr>
+      <th>44817</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>1980.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+    </tr>
+    <tr>
+      <th>44818</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>1980.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+    </tr>
+    <tr>
+      <th>44819</th>
+      <td>Exported: 2024-19-6 20:40 UTC</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>115089 rows × 11 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continent</th>
+      <th>unMember</th>
+      <th>standardized_country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Asia</td>
+      <td>True</td>
+      <td>India</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Asia</td>
+      <td>True</td>
+      <td>China</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>North America</td>
+      <td>True</td>
+      <td>United States</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Asia</td>
+      <td>True</td>
+      <td>Indonesia</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Asia</td>
+      <td>True</td>
+      <td>Pakistan</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>229</th>
+      <td>North America</td>
+      <td>False</td>
+      <td>Montserrat</td>
+    </tr>
+    <tr>
+      <th>230</th>
+      <td>South America</td>
+      <td>False</td>
+      <td>Falkland Islands</td>
+    </tr>
+    <tr>
+      <th>231</th>
+      <td>Oceania</td>
+      <td>False</td>
+      <td>Niue</td>
+    </tr>
+    <tr>
+      <th>232</th>
+      <td>Oceania</td>
+      <td>False</td>
+      <td>Tokelau</td>
+    </tr>
+    <tr>
+      <th>233</th>
+      <td>Europe</td>
+      <td>True</td>
+      <td>Vatican City</td>
+    </tr>
+  </tbody>
+</table>
+<p>234 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#merge the dataframes</span>
+<span class="n">df_mergde</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_illness</span><span class="p">,</span> <span class="n">df_contnent</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_mergde</span><span class="p">)</span>
+<span class="c1">#change year to int</span>
+<span class="n">df_mergde</span><span class="p">[</span><span class="s1">&#39;YEAR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_mergde</span><span class="p">[</span><span class="s1">&#39;YEAR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_mergde</span><span class="p">)</span>
+<span class="n">df_mergde</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;vaccinated_continets.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GROUP</th>
+      <th>CODE</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>COVERAGE_CATEGORY</th>
+      <th>COVERAGE_CATEGORY_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+      <th>standardized_country</th>
+      <th>continent</th>
+      <th>unMember</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>84.69</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Albania</td>
+      <td>Europe</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>COUNTRIES</td>
+      <td>DZA</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>88.25</td>
+      <td>Algeria</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>COUNTRIES</td>
+      <td>AND</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Andorra</td>
+      <td>Europe</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>COUNTRIES</td>
+      <td>AGO</td>
+      <td>2023.0</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>81.38</td>
+      <td>Angola</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>101402</th>
+      <td>COUNTRIES</td>
+      <td>YEM</td>
+      <td>1980.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.00</td>
+      <td>Yemen</td>
+      <td>Asia</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>101403</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>1980.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>101404</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>1980.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>101405</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>1980.0</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>101406</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>1980.0</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>101407 rows × 13 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GROUP</th>
+      <th>CODE</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>COVERAGE_CATEGORY</th>
+      <th>COVERAGE_CATEGORY_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+      <th>standardized_country</th>
+      <th>continent</th>
+      <th>unMember</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>84.69</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Albania</td>
+      <td>Europe</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>COUNTRIES</td>
+      <td>DZA</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>88.25</td>
+      <td>Algeria</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>COUNTRIES</td>
+      <td>AND</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Andorra</td>
+      <td>Europe</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>COUNTRIES</td>
+      <td>AGO</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>81.38</td>
+      <td>Angola</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>101402</th>
+      <td>COUNTRIES</td>
+      <td>YEM</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.00</td>
+      <td>Yemen</td>
+      <td>Asia</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>101403</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>101404</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>101405</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>101406</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>101407 rows × 13 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd_life</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;life_expactancy_2_worldbank.csv&#39;</span><span class="p">)</span>  
+<span class="n">pd_life</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Unnamed: 68&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<span class="n">display</span><span class="p">(</span><span class="n">pd_life</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country Name</th>
+      <th>Country Code</th>
+      <th>Indicator Name</th>
+      <th>Indicator Code</th>
+      <th>1960</th>
+      <th>1961</th>
+      <th>1962</th>
+      <th>1963</th>
+      <th>1964</th>
+      <th>1965</th>
+      <th>...</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aruba</td>
+      <td>ABW</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>64.152000</td>
+      <td>64.537000</td>
+      <td>64.752000</td>
+      <td>65.132000</td>
+      <td>65.294000</td>
+      <td>65.502000</td>
+      <td>...</td>
+      <td>75.601000</td>
+      <td>75.683000</td>
+      <td>75.617000</td>
+      <td>75.903000</td>
+      <td>76.072000</td>
+      <td>76.248000</td>
+      <td>75.723000</td>
+      <td>74.626000</td>
+      <td>74.992000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa Eastern and Southern</td>
+      <td>AFE</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>44.085552</td>
+      <td>44.386697</td>
+      <td>44.752182</td>
+      <td>44.913159</td>
+      <td>45.479043</td>
+      <td>45.498338</td>
+      <td>...</td>
+      <td>61.337917</td>
+      <td>61.856458</td>
+      <td>62.444050</td>
+      <td>62.922390</td>
+      <td>63.365863</td>
+      <td>63.755678</td>
+      <td>63.313860</td>
+      <td>62.454590</td>
+      <td>62.899031</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>32.535000</td>
+      <td>33.068000</td>
+      <td>33.547000</td>
+      <td>34.016000</td>
+      <td>34.494000</td>
+      <td>34.953000</td>
+      <td>...</td>
+      <td>62.545000</td>
+      <td>62.659000</td>
+      <td>63.136000</td>
+      <td>63.016000</td>
+      <td>63.081000</td>
+      <td>63.565000</td>
+      <td>62.575000</td>
+      <td>61.982000</td>
+      <td>62.879000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa Western and Central</td>
+      <td>AFW</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>37.845152</td>
+      <td>38.164950</td>
+      <td>38.735102</td>
+      <td>39.063715</td>
+      <td>39.335360</td>
+      <td>39.618038</td>
+      <td>...</td>
+      <td>55.922229</td>
+      <td>56.195872</td>
+      <td>56.581678</td>
+      <td>56.888446</td>
+      <td>57.189139</td>
+      <td>57.555796</td>
+      <td>57.226373</td>
+      <td>56.988657</td>
+      <td>57.626176</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angola</td>
+      <td>AGO</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>38.211000</td>
+      <td>37.267000</td>
+      <td>37.539000</td>
+      <td>37.824000</td>
+      <td>38.131000</td>
+      <td>38.495000</td>
+      <td>...</td>
+      <td>60.040000</td>
+      <td>60.655000</td>
+      <td>61.092000</td>
+      <td>61.680000</td>
+      <td>62.144000</td>
+      <td>62.448000</td>
+      <td>62.261000</td>
+      <td>61.643000</td>
+      <td>61.929000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>261</th>
+      <td>Kosovo</td>
+      <td>XKX</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>61.485000</td>
+      <td>61.836000</td>
+      <td>62.134000</td>
+      <td>62.440000</td>
+      <td>62.734000</td>
+      <td>63.041000</td>
+      <td>...</td>
+      <td>78.880000</td>
+      <td>78.922000</td>
+      <td>78.981000</td>
+      <td>78.783000</td>
+      <td>78.696000</td>
+      <td>79.022000</td>
+      <td>76.567000</td>
+      <td>76.806000</td>
+      <td>79.524000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>262</th>
+      <td>Yemen, Rep.</td>
+      <td>YEM</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>33.678000</td>
+      <td>34.098000</td>
+      <td>33.615000</td>
+      <td>33.247000</td>
+      <td>34.738000</td>
+      <td>35.373000</td>
+      <td>...</td>
+      <td>67.384000</td>
+      <td>65.873000</td>
+      <td>66.064000</td>
+      <td>65.957000</td>
+      <td>64.575000</td>
+      <td>65.092000</td>
+      <td>64.650000</td>
+      <td>63.753000</td>
+      <td>63.720000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>263</th>
+      <td>South Africa</td>
+      <td>ZAF</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>52.669000</td>
+      <td>53.085000</td>
+      <td>53.376000</td>
+      <td>53.633000</td>
+      <td>53.906000</td>
+      <td>54.192000</td>
+      <td>...</td>
+      <td>63.380000</td>
+      <td>63.950000</td>
+      <td>64.747000</td>
+      <td>65.402000</td>
+      <td>65.674000</td>
+      <td>66.175000</td>
+      <td>65.252000</td>
+      <td>62.341000</td>
+      <td>61.480000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>264</th>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>49.042000</td>
+      <td>49.452000</td>
+      <td>49.794000</td>
+      <td>50.133000</td>
+      <td>49.849000</td>
+      <td>50.563000</td>
+      <td>...</td>
+      <td>60.699000</td>
+      <td>61.208000</td>
+      <td>61.794000</td>
+      <td>62.120000</td>
+      <td>62.342000</td>
+      <td>62.793000</td>
+      <td>62.380000</td>
+      <td>61.223000</td>
+      <td>61.803000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>265</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>53.235000</td>
+      <td>53.619000</td>
+      <td>54.071000</td>
+      <td>54.549000</td>
+      <td>54.994000</td>
+      <td>55.459000</td>
+      <td>...</td>
+      <td>58.846000</td>
+      <td>59.591000</td>
+      <td>60.306000</td>
+      <td>60.709000</td>
+      <td>61.414000</td>
+      <td>61.292000</td>
+      <td>61.124000</td>
+      <td>59.253000</td>
+      <td>59.391000</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>266 rows × 68 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#meltinf the data</span>
+<span class="n">pd_life_melted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">pd_life</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Country Code&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Name&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Code&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Life Expectancy&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd_life_melted</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country Name</th>
+      <th>Country Code</th>
+      <th>Indicator Name</th>
+      <th>Indicator Code</th>
+      <th>Year</th>
+      <th>Life Expectancy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aruba</td>
+      <td>ABW</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>64.152000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa Eastern and Southern</td>
+      <td>AFE</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>44.085552</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>32.535000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa Western and Central</td>
+      <td>AFW</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>37.845152</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angola</td>
+      <td>AGO</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>38.211000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>17019</th>
+      <td>Kosovo</td>
+      <td>XKX</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17020</th>
+      <td>Yemen, Rep.</td>
+      <td>YEM</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17021</th>
+      <td>South Africa</td>
+      <td>ZAF</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17022</th>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17023</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>17024 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#normalize the country names</span>
+<span class="n">pd_life_melted</span><span class="p">[</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_life_melted</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">standardize_country_name</span><span class="p">)</span>
+<span class="n">pd_life_melted</span> <span class="o">=</span> <span class="n">pd_life_melted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">])</span>	
+<span class="n">display</span><span class="p">(</span><span class="n">pd_life_melted</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country Code</th>
+      <th>Indicator Name</th>
+      <th>Indicator Code</th>
+      <th>Year</th>
+      <th>Life Expectancy</th>
+      <th>standardized_country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ABW</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>64.152000</td>
+      <td>Aruba</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AFE</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>44.085552</td>
+      <td>Africa Eastern and Southern</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AFG</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>32.535000</td>
+      <td>Afghanistan</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AFW</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>37.845152</td>
+      <td>Africa Western and Central</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AGO</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1960</td>
+      <td>38.211000</td>
+      <td>Angola</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>17019</th>
+      <td>XKX</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Kosovo</td>
+    </tr>
+    <tr>
+      <th>17020</th>
+      <td>YEM</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Yemen, Rep.</td>
+    </tr>
+    <tr>
+      <th>17021</th>
+      <td>ZAF</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>South Africa</td>
+    </tr>
+    <tr>
+      <th>17022</th>
+      <td>ZMB</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+    </tr>
+    <tr>
+      <th>17023</th>
+      <td>ZWE</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+    </tr>
+  </tbody>
+</table>
+<p>17024 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make year to int</span>
+<span class="n">pd_life_melted</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_life_melted</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="c1">#merge the dataframes</span>
+<span class="n">df_merged_life</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_mergde</span><span class="p">,</span> <span class="n">pd_life_melted</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">,</span><span class="s1">&#39;YEAR&#39;</span><span class="p">],</span><span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="c1">#rename the columns</span>
+<span class="n">df_merged_life</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">:</span><span class="s1">&#39;Country Name&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_merged_life</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GROUP</th>
+      <th>CODE</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>COVERAGE_CATEGORY</th>
+      <th>COVERAGE_CATEGORY_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+      <th>Country Name</th>
+      <th>continent</th>
+      <th>unMember</th>
+      <th>Country Code</th>
+      <th>Indicator Name</th>
+      <th>Indicator Code</th>
+      <th>Year</th>
+      <th>Life Expectancy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>COUNTRIES</td>
+      <td>AFG</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>84.69</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>AFG</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>COUNTRIES</td>
+      <td>ALB</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Albania</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>ALB</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>COUNTRIES</td>
+      <td>DZA</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>88.25</td>
+      <td>Algeria</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>DZA</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>COUNTRIES</td>
+      <td>AND</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Andorra</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>AND</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>COUNTRIES</td>
+      <td>AGO</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>ADMIN</td>
+      <td>Administrative coverage</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>81.38</td>
+      <td>Angola</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>AGO</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>93693</th>
+      <td>COUNTRIES</td>
+      <td>VNM</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Viet Nam</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>VNM</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1980</td>
+      <td>66.195</td>
+    </tr>
+    <tr>
+      <th>93694</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>ZMB</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1980</td>
+      <td>54.143</td>
+    </tr>
+    <tr>
+      <th>93695</th>
+      <td>COUNTRIES</td>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>ZMB</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1980</td>
+      <td>54.143</td>
+    </tr>
+    <tr>
+      <th>93696</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>ZWE</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1980</td>
+      <td>58.674</td>
+    </tr>
+    <tr>
+      <th>93697</th>
+      <td>COUNTRIES</td>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>WUENIC</td>
+      <td>WHO/UNICEF Estimates of National Immunization ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>ZWE</td>
+      <td>Life expectancy at birth, total (years)</td>
+      <td>SP.DYN.LE00.IN</td>
+      <td>1980</td>
+      <td>58.674</td>
+    </tr>
+  </tbody>
+</table>
+<p>93698 rows × 18 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#drop irrelevant columns</span>
+<span class="n">df_merged_life</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;undropped_better_merge.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_merged_life</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Code&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Name&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Code&#39;</span><span class="p">,</span><span class="s1">&#39;COVERAGE_CATEGORY&#39;</span><span class="p">,</span> <span class="s1">&#39;COVERAGE_CATEGORY_DESCRIPTION&#39;</span><span class="p">,</span> <span class="s1">&#39;GROUP&#39;</span><span class="p">,</span> <span class="s1">&#39;Year&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_merged_life</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODE</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+      <th>Country Name</th>
+      <th>continent</th>
+      <th>unMember</th>
+      <th>Life Expectancy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AFG</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>84.69</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ALB</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Albania</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DZA</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>88.25</td>
+      <td>Algeria</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AND</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Andorra</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AGO</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>81.38</td>
+      <td>Angola</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>93693</th>
+      <td>VNM</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Viet Nam</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>66.195</td>
+    </tr>
+    <tr>
+      <th>93694</th>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>54.143</td>
+    </tr>
+    <tr>
+      <th>93695</th>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>54.143</td>
+    </tr>
+    <tr>
+      <th>93696</th>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>58.674</td>
+    </tr>
+    <tr>
+      <th>93697</th>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>58.674</td>
+    </tr>
+  </tbody>
+</table>
+<p>93698 rows × 11 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#write the data to a csv file</span>
+<span class="n">df_merged_life</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;all_vaccane_1980-2023.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="extra-merging-for-gdp-and-infant-death">
+<h1>extra merging for gdp and infant death<a class="headerlink" href="#extra-merging-for-gdp-and-infant-death" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd_gdp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;gdpcapita.csv&#39;</span><span class="p">)</span>
+<span class="c1">#drop unnamed column   </span>
+<span class="n">pd_gdp</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Unnamed: 68&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd_gdp</span><span class="p">)</span>
+<span class="n">pd_child</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Kinderdoden.csv&#39;</span><span class="p">)</span>
+<span class="c1">#drop unnamed column</span>
+<span class="n">pd_child</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Unnamed: 68&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd_child</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country Name</th>
+      <th>Country Code</th>
+      <th>Indicator Name</th>
+      <th>Indicator Code</th>
+      <th>1960</th>
+      <th>1961</th>
+      <th>1962</th>
+      <th>1963</th>
+      <th>1964</th>
+      <th>1965</th>
+      <th>...</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aruba</td>
+      <td>ABW</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>26940.264114</td>
+      <td>28419.264534</td>
+      <td>28449.712946</td>
+      <td>29329.081747</td>
+      <td>30918.483584</td>
+      <td>31902.809818</td>
+      <td>24008.127822</td>
+      <td>29127.759384</td>
+      <td>33300.838819</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa Eastern and Southern</td>
+      <td>AFE</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>1678.554977</td>
+      <td>1498.738230</td>
+      <td>1346.152564</td>
+      <td>1485.522597</td>
+      <td>1558.307482</td>
+      <td>1507.982881</td>
+      <td>1355.805923</td>
+      <td>1545.613215</td>
+      <td>1644.062829</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>62.369375</td>
+      <td>62.443703</td>
+      <td>60.950364</td>
+      <td>82.021738</td>
+      <td>85.511073</td>
+      <td>105.243196</td>
+      <td>...</td>
+      <td>626.512930</td>
+      <td>566.881133</td>
+      <td>523.053012</td>
+      <td>526.140801</td>
+      <td>492.090632</td>
+      <td>497.741429</td>
+      <td>512.055098</td>
+      <td>355.777826</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa Western and Central</td>
+      <td>AFW</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>107.053706</td>
+      <td>112.128417</td>
+      <td>117.814663</td>
+      <td>122.370114</td>
+      <td>130.700278</td>
+      <td>137.301801</td>
+      <td>...</td>
+      <td>2248.316255</td>
+      <td>1882.264038</td>
+      <td>1648.762676</td>
+      <td>1590.277754</td>
+      <td>1735.374911</td>
+      <td>1812.446822</td>
+      <td>1688.075575</td>
+      <td>1766.943618</td>
+      <td>1785.312219</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angola</td>
+      <td>AGO</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>5011.984412</td>
+      <td>3217.339244</td>
+      <td>1809.709377</td>
+      <td>2439.374441</td>
+      <td>2540.508878</td>
+      <td>2191.347764</td>
+      <td>1450.905112</td>
+      <td>1927.474078</td>
+      <td>3000.444231</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>261</th>
+      <td>Kosovo</td>
+      <td>XKX</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>3902.530841</td>
+      <td>3520.782075</td>
+      <td>3759.472855</td>
+      <td>4009.353811</td>
+      <td>4384.188680</td>
+      <td>4416.029253</td>
+      <td>4310.934002</td>
+      <td>5269.783901</td>
+      <td>5340.268798</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>262</th>
+      <td>Yemen, Rep.</td>
+      <td>YEM</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>1557.601406</td>
+      <td>1488.416269</td>
+      <td>1069.816998</td>
+      <td>893.716494</td>
+      <td>701.714869</td>
+      <td>693.816504</td>
+      <td>578.512010</td>
+      <td>543.637538</td>
+      <td>650.272218</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>263</th>
+      <td>South Africa</td>
+      <td>ZAF</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>529.561923</td>
+      <td>543.042224</td>
+      <td>560.699394</td>
+      <td>601.599951</td>
+      <td>642.688431</td>
+      <td>681.131111</td>
+      <td>...</td>
+      <td>6965.137897</td>
+      <td>6204.929901</td>
+      <td>5735.066787</td>
+      <td>6734.475153</td>
+      <td>7067.724165</td>
+      <td>6702.526617</td>
+      <td>5753.066494</td>
+      <td>7073.612754</td>
+      <td>6766.481254</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>264</th>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>228.567399</td>
+      <td>216.274674</td>
+      <td>208.562685</td>
+      <td>209.453362</td>
+      <td>236.941713</td>
+      <td>296.022427</td>
+      <td>...</td>
+      <td>1724.576220</td>
+      <td>1307.909649</td>
+      <td>1249.923143</td>
+      <td>1495.752138</td>
+      <td>1475.199883</td>
+      <td>1268.120941</td>
+      <td>956.831729</td>
+      <td>1134.713454</td>
+      <td>1456.901570</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>265</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>276.643363</td>
+      <td>279.332656</td>
+      <td>275.966139</td>
+      <td>277.532515</td>
+      <td>282.376856</td>
+      <td>294.893605</td>
+      <td>...</td>
+      <td>1407.034291</td>
+      <td>1410.329173</td>
+      <td>1421.787791</td>
+      <td>1192.107012</td>
+      <td>2269.177012</td>
+      <td>1421.868596</td>
+      <td>1372.696674</td>
+      <td>1773.920411</td>
+      <td>1676.821489</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>266 rows × 68 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country Name</th>
+      <th>Country Code</th>
+      <th>Indicator Name</th>
+      <th>Indicator Code</th>
+      <th>1960</th>
+      <th>1961</th>
+      <th>1962</th>
+      <th>1963</th>
+      <th>1964</th>
+      <th>1965</th>
+      <th>...</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aruba</td>
+      <td>ABW</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa Eastern and Southern</td>
+      <td>AFE</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>50.518585</td>
+      <td>49.137061</td>
+      <td>47.792565</td>
+      <td>46.422853</td>
+      <td>45.087369</td>
+      <td>43.89670</td>
+      <td>42.858888</td>
+      <td>41.823821</td>
+      <td>40.797625</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>231.4</td>
+      <td>227.6</td>
+      <td>223.9</td>
+      <td>220.0</td>
+      <td>...</td>
+      <td>56.200000</td>
+      <td>54.600000</td>
+      <td>53.000000</td>
+      <td>51.500000</td>
+      <td>50.100000</td>
+      <td>48.80000</td>
+      <td>47.400000</td>
+      <td>46.100000</td>
+      <td>44.800000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa Western and Central</td>
+      <td>AFW</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>69.847023</td>
+      <td>68.672227</td>
+      <td>67.493496</td>
+      <td>66.304602</td>
+      <td>65.007399</td>
+      <td>63.59875</td>
+      <td>62.159863</td>
+      <td>60.679335</td>
+      <td>59.130029</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angola</td>
+      <td>AGO</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>60.300000</td>
+      <td>57.600000</td>
+      <td>55.400000</td>
+      <td>53.400000</td>
+      <td>51.600000</td>
+      <td>49.90000</td>
+      <td>48.400000</td>
+      <td>47.000000</td>
+      <td>45.700000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>261</th>
+      <td>Kosovo</td>
+      <td>XKX</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>13.800000</td>
+      <td>13.000000</td>
+      <td>12.200000</td>
+      <td>11.400000</td>
+      <td>10.800000</td>
+      <td>10.10000</td>
+      <td>9.600000</td>
+      <td>9.100000</td>
+      <td>8.700000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>262</th>
+      <td>Yemen, Rep.</td>
+      <td>YEM</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>272.0</td>
+      <td>265.0</td>
+      <td>...</td>
+      <td>38.400000</td>
+      <td>38.400000</td>
+      <td>37.500000</td>
+      <td>36.800000</td>
+      <td>36.600000</td>
+      <td>35.90000</td>
+      <td>34.500000</td>
+      <td>34.700000</td>
+      <td>33.100000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>263</th>
+      <td>South Africa</td>
+      <td>ZAF</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>30.400000</td>
+      <td>29.800000</td>
+      <td>29.400000</td>
+      <td>28.900000</td>
+      <td>28.500000</td>
+      <td>28.20000</td>
+      <td>28.100000</td>
+      <td>27.800000</td>
+      <td>27.700000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>264</th>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>121.6</td>
+      <td>119.7</td>
+      <td>117.9</td>
+      <td>116.4</td>
+      <td>115.1</td>
+      <td>114.2</td>
+      <td>...</td>
+      <td>47.000000</td>
+      <td>47.100000</td>
+      <td>45.400000</td>
+      <td>44.000000</td>
+      <td>43.400000</td>
+      <td>42.20000</td>
+      <td>40.900000</td>
+      <td>39.900000</td>
+      <td>39.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>265</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>92.8</td>
+      <td>90.8</td>
+      <td>88.5</td>
+      <td>86.2</td>
+      <td>83.9</td>
+      <td>81.7</td>
+      <td>...</td>
+      <td>43.000000</td>
+      <td>41.900000</td>
+      <td>40.400000</td>
+      <td>39.200000</td>
+      <td>37.800000</td>
+      <td>36.90000</td>
+      <td>36.400000</td>
+      <td>35.500000</td>
+      <td>34.600000</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>266 rows × 68 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#meltinf the data</span>
+<span class="n">pd_gdp_melted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">pd_gdp</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Country Code&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Name&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Code&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;GDP&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd_gdp_melted</span><span class="p">)</span>
+<span class="n">pd_gdp__meltd_drop</span> <span class="o">=</span> <span class="n">pd_gdp_melted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Code&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Name&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Code&#39;</span><span class="p">])</span>
+<span class="c1">#equalize the country names</span>
+<span class="n">pd_gdp__meltd_drop</span><span class="p">[</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_gdp__meltd_drop</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">standardize_country_name</span><span class="p">)</span>
+<span class="n">pd_gdp__meltd_drop</span> <span class="o">=</span> <span class="n">pd_gdp__meltd_drop</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">])</span>
+<span class="c1">#rename the columns</span>
+<span class="n">pd_gdp__meltd_drop</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">:</span><span class="s1">&#39;Country Name&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#make year to int</span>
+<span class="n">pd_gdp__meltd_drop</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_gdp__meltd_drop</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd_gdp__meltd_drop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country Name</th>
+      <th>Country Code</th>
+      <th>Indicator Name</th>
+      <th>Indicator Code</th>
+      <th>Year</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aruba</td>
+      <td>ABW</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>1960</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa Eastern and Southern</td>
+      <td>AFE</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>1960</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>1960</td>
+      <td>62.369375</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa Western and Central</td>
+      <td>AFW</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>1960</td>
+      <td>107.053706</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angola</td>
+      <td>AGO</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>1960</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>17019</th>
+      <td>Kosovo</td>
+      <td>XKX</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17020</th>
+      <td>Yemen, Rep.</td>
+      <td>YEM</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17021</th>
+      <td>South Africa</td>
+      <td>ZAF</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17022</th>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17023</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>GDP per capita (current US$)</td>
+      <td>NY.GDP.PCAP.CD</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>17024 rows × 6 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>GDP</th>
+      <th>Country Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>Aruba</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>Africa Eastern and Southern</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1960</td>
+      <td>62.369375</td>
+      <td>Afghanistan</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1960</td>
+      <td>107.053706</td>
+      <td>Africa Western and Central</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>Angola</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>17019</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Kosovo</td>
+    </tr>
+    <tr>
+      <th>17020</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Yemen, Rep.</td>
+    </tr>
+    <tr>
+      <th>17021</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>South Africa</td>
+    </tr>
+    <tr>
+      <th>17022</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+    </tr>
+    <tr>
+      <th>17023</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+    </tr>
+  </tbody>
+</table>
+<p>17024 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#the same for the child mortality</span>
+<span class="n">pd_child_melted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">pd_child</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Country Code&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Name&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Code&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Child Mortality&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd_child_melted</span><span class="p">)</span>
+<span class="n">pd_child_melted_drop</span> <span class="o">=</span> <span class="n">pd_child_melted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Code&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Name&#39;</span><span class="p">,</span><span class="s1">&#39;Indicator Code&#39;</span><span class="p">])</span>
+<span class="n">pd_child_melted_drop</span><span class="p">[</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_child_melted_drop</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">standardize_country_name</span><span class="p">)</span>
+<span class="n">pd_child_melted_drop</span> <span class="o">=</span> <span class="n">pd_child_melted_drop</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">])</span>
+<span class="n">pd_child_melted_drop</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;standardized_country&#39;</span><span class="p">:</span><span class="s1">&#39;Country Name&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#rename the columns</span>
+<span class="n">pd_child_melted_drop</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Child Mortality&#39;</span><span class="p">:</span><span class="s1">&#39;Child Mortality per 1000 &#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pd_child_melted_drop</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_child_melted_drop</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd_child_melted_drop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country Name</th>
+      <th>Country Code</th>
+      <th>Indicator Name</th>
+      <th>Indicator Code</th>
+      <th>Year</th>
+      <th>Child Mortality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aruba</td>
+      <td>ABW</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>1960</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa Eastern and Southern</td>
+      <td>AFE</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>1960</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>AFG</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>1960</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa Western and Central</td>
+      <td>AFW</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>1960</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Angola</td>
+      <td>AGO</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>1960</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>17019</th>
+      <td>Kosovo</td>
+      <td>XKX</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17020</th>
+      <td>Yemen, Rep.</td>
+      <td>YEM</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17021</th>
+      <td>South Africa</td>
+      <td>ZAF</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17022</th>
+      <td>Zambia</td>
+      <td>ZMB</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17023</th>
+      <td>Zimbabwe</td>
+      <td>ZWE</td>
+      <td>Mortality rate, infant (per 1,000 live births)</td>
+      <td>SP.DYN.IMRT.IN</td>
+      <td>2023</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>17024 rows × 6 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Child Mortality per 1000</th>
+      <th>Country Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>Aruba</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>Africa Eastern and Southern</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>Afghanistan</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>Africa Western and Central</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>Angola</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>17019</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Kosovo</td>
+    </tr>
+    <tr>
+      <th>17020</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Yemen, Rep.</td>
+    </tr>
+    <tr>
+      <th>17021</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>South Africa</td>
+    </tr>
+    <tr>
+      <th>17022</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+    </tr>
+    <tr>
+      <th>17023</th>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+    </tr>
+  </tbody>
+</table>
+<p>17024 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#merge the dataframes </span>
+<span class="n">df_merged_gdp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_merged_life</span><span class="p">,</span> <span class="n">pd_gdp__meltd_drop</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">,</span><span class="s1">&#39;YEAR&#39;</span><span class="p">],</span><span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="c1">#drop the year column</span>
+<span class="n">df_merged_gdp</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_merged_gdp</span><span class="p">)</span>
+<span class="n">df_merged_gdp_child</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_merged_gdp</span><span class="p">,</span> <span class="n">pd_child_melted_drop</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">,</span><span class="s1">&#39;YEAR&#39;</span><span class="p">],</span><span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country Name&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="c1">#drop the year column</span>
+<span class="n">df_merged_gdp_child</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#renaem the gdp column</span>
+<span class="n">df_merged_gdp_child</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;GDP&#39;</span><span class="p">:</span><span class="s1">&#39;GDP per Capita&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_merged_gdp_child</span><span class="p">)</span>
+<span class="n">df_merged_gdp_child</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;all_vaccine_data.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODE</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+      <th>Country Name</th>
+      <th>continent</th>
+      <th>unMember</th>
+      <th>Life Expectancy</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AFG</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>84.69</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ALB</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Albania</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DZA</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>88.25</td>
+      <td>Algeria</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AND</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Andorra</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AGO</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>81.38</td>
+      <td>Angola</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>93693</th>
+      <td>VNM</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Viet Nam</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>66.195</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>93694</th>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>54.143</td>
+      <td>678.774900</td>
+    </tr>
+    <tr>
+      <th>93695</th>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>54.143</td>
+      <td>678.774900</td>
+    </tr>
+    <tr>
+      <th>93696</th>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>58.674</td>
+      <td>947.367135</td>
+    </tr>
+    <tr>
+      <th>93697</th>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>58.674</td>
+      <td>947.367135</td>
+    </tr>
+  </tbody>
+</table>
+<p>93698 rows × 12 columns</p>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODE</th>
+      <th>YEAR</th>
+      <th>ANTIGEN</th>
+      <th>ANTIGEN_DESCRIPTION</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>COVERAGE</th>
+      <th>Country Name</th>
+      <th>continent</th>
+      <th>unMember</th>
+      <th>Life Expectancy</th>
+      <th>GDP per Capita</th>
+      <th>Child Mortality per 1000</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AFG</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>84.69</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ALB</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Albania</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DZA</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>88.25</td>
+      <td>Algeria</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AND</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Andorra</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AGO</td>
+      <td>2023</td>
+      <td>POL3</td>
+      <td>Polio, 3rd dose</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>81.38</td>
+      <td>Angola</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>93693</th>
+      <td>VNM</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Viet Nam</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>66.195</td>
+      <td>NaN</td>
+      <td>47.2</td>
+    </tr>
+    <tr>
+      <th>93694</th>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>54.143</td>
+      <td>678.774900</td>
+      <td>95.8</td>
+    </tr>
+    <tr>
+      <th>93695</th>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>54.143</td>
+      <td>678.774900</td>
+      <td>95.8</td>
+    </tr>
+    <tr>
+      <th>93696</th>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV1</td>
+      <td>DTP-containing vaccine, 1st dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>58.674</td>
+      <td>947.367135</td>
+      <td>70.5</td>
+    </tr>
+    <tr>
+      <th>93697</th>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>DTPCV3</td>
+      <td>DTP-containing vaccine, 3rd dose</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>58.674</td>
+      <td>947.367135</td>
+      <td>70.5</td>
+    </tr>
+  </tbody>
+</table>
+<p>93698 rows × 13 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#put each diffferent illness in a different colu</span>
+<span class="n">list_of_indicators</span> <span class="o">=</span> <span class="n">df_merged_gdp_child</span><span class="p">[</span><span class="s1">&#39;ANTIGEN_DESCRIPTION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">indicator</span> <span class="ow">in</span> <span class="n">list_of_indicators</span><span class="p">:</span>
+    <span class="n">df_merged_gdp_child</span><span class="p">[</span><span class="n">indicator</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_merged_gdp_child</span><span class="p">[</span><span class="s1">&#39;ANTIGEN_DESCRIPTION&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">indicator</span><span class="p">,</span> <span class="n">df_merged_gdp_child</span><span class="p">[</span><span class="s1">&#39;COVERAGE&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">df_merged_gdp_child</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ANTIGEN_DESCRIPTION&#39;</span><span class="p">,</span> <span class="s1">&#39;COVERAGE&#39;</span><span class="p">,</span><span class="s1">&#39;ANTIGEN&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_merged_gdp_child</span><span class="p">)</span>
+<span class="n">df_merged_gdp_child</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;errorvaccinne.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODE</th>
+      <th>YEAR</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>Country Name</th>
+      <th>continent</th>
+      <th>unMember</th>
+      <th>Life Expectancy</th>
+      <th>GDP per Capita</th>
+      <th>Child Mortality per 1000</th>
+      <th>Polio, 3rd dose</th>
+      <th>Measles-containing vaccine, 2nd dose</th>
+      <th>Measles-containing vaccine, 1st dose</th>
+      <th>DTP-containing vaccine, 3rd dose</th>
+      <th>DTP-containing vaccine, 1st dose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AFG</td>
+      <td>2023</td>
+      <td>1995511.0</td>
+      <td>1689957.0</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>84.69</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ALB</td>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Albania</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DZA</td>
+      <td>2023</td>
+      <td>925447.0</td>
+      <td>816726.0</td>
+      <td>Algeria</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>88.25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AND</td>
+      <td>2023</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Andorra</td>
+      <td>Europe</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AGO</td>
+      <td>2023</td>
+      <td>1154497.0</td>
+      <td>939484.0</td>
+      <td>Angola</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>81.38</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>93693</th>
+      <td>VNM</td>
+      <td>1980</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Viet Nam</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>66.195</td>
+      <td>NaN</td>
+      <td>47.2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>93694</th>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>54.143</td>
+      <td>678.774900</td>
+      <td>95.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>93695</th>
+      <td>ZMB</td>
+      <td>1980</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zambia</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>54.143</td>
+      <td>678.774900</td>
+      <td>95.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>93696</th>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>58.674</td>
+      <td>947.367135</td>
+      <td>70.5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>93697</th>
+      <td>ZWE</td>
+      <td>1980</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Zimbabwe</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>58.674</td>
+      <td>947.367135</td>
+      <td>70.5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>93698 rows × 15 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#join rows of the same country in the same year</span>
+<span class="n">df_merged_gdp_child_grouped</span> <span class="o">=</span> <span class="n">df_merged_gdp_child</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Country Name&#39;</span><span class="p">,</span> <span class="s1">&#39;YEAR&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_merged_gdp_child_grouped</span><span class="p">)</span>
+<span class="n">df_merged_gdp_child_grouped</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;final_vaccine_data_columns.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country Name</th>
+      <th>YEAR</th>
+      <th>CODE</th>
+      <th>TARGET_NUMBER</th>
+      <th>DOSES</th>
+      <th>continent</th>
+      <th>unMember</th>
+      <th>Life Expectancy</th>
+      <th>GDP per Capita</th>
+      <th>Child Mortality per 1000</th>
+      <th>Polio, 3rd dose</th>
+      <th>Measles-containing vaccine, 2nd dose</th>
+      <th>Measles-containing vaccine, 1st dose</th>
+      <th>DTP-containing vaccine, 3rd dose</th>
+      <th>DTP-containing vaccine, 1st dose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>1980</td>
+      <td>AFG</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>39.618</td>
+      <td>291.649791</td>
+      <td>164.0</td>
+      <td>3.00</td>
+      <td>NaN</td>
+      <td>11.00</td>
+      <td>4.00</td>
+      <td>22.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>1981</td>
+      <td>AFG</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>40.164</td>
+      <td>311.853617</td>
+      <td>159.8</td>
+      <td>3.00</td>
+      <td>NaN</td>
+      <td>6.00</td>
+      <td>3.00</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>1982</td>
+      <td>AFG</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>37.766</td>
+      <td>NaN</td>
+      <td>155.6</td>
+      <td>5.00</td>
+      <td>NaN</td>
+      <td>8.00</td>
+      <td>5.00</td>
+      <td>24.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>1983</td>
+      <td>AFG</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>38.187</td>
+      <td>NaN</td>
+      <td>151.2</td>
+      <td>5.00</td>
+      <td>NaN</td>
+      <td>9.00</td>
+      <td>5.00</td>
+      <td>24.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>1984</td>
+      <td>AFG</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Asia</td>
+      <td>True</td>
+      <td>33.329</td>
+      <td>NaN</td>
+      <td>147.1</td>
+      <td>16.00</td>
+      <td>NaN</td>
+      <td>14.00</td>
+      <td>16.00</td>
+      <td>39.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>7695</th>
+      <td>Zimbabwe</td>
+      <td>2019</td>
+      <td>ZWE</td>
+      <td>459428.0</td>
+      <td>434140.0</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>61.292</td>
+      <td>1421.868596</td>
+      <td>36.9</td>
+      <td>90.00</td>
+      <td>75.92</td>
+      <td>85.00</td>
+      <td>90.00</td>
+      <td>94.50</td>
+    </tr>
+    <tr>
+      <th>7696</th>
+      <td>Zimbabwe</td>
+      <td>2020</td>
+      <td>ZWE</td>
+      <td>464123.0</td>
+      <td>430862.0</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>61.124</td>
+      <td>1372.696674</td>
+      <td>36.4</td>
+      <td>86.32</td>
+      <td>74.23</td>
+      <td>85.00</td>
+      <td>86.08</td>
+      <td>93.00</td>
+    </tr>
+    <tr>
+      <th>7697</th>
+      <td>Zimbabwe</td>
+      <td>2021</td>
+      <td>ZWE</td>
+      <td>529341.0</td>
+      <td>439711.0</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>59.253</td>
+      <td>1773.920411</td>
+      <td>35.5</td>
+      <td>88.00</td>
+      <td>76.00</td>
+      <td>88.00</td>
+      <td>88.00</td>
+      <td>93.00</td>
+    </tr>
+    <tr>
+      <th>7698</th>
+      <td>Zimbabwe</td>
+      <td>2022</td>
+      <td>ZWE</td>
+      <td>442659.0</td>
+      <td>449600.0</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>59.391</td>
+      <td>1676.821489</td>
+      <td>34.6</td>
+      <td>93.29</td>
+      <td>80.95</td>
+      <td>93.74</td>
+      <td>97.23</td>
+      <td>101.57</td>
+    </tr>
+    <tr>
+      <th>7699</th>
+      <td>Zimbabwe</td>
+      <td>2023</td>
+      <td>ZWE</td>
+      <td>462199.0</td>
+      <td>465712.0</td>
+      <td>Africa</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>95.41</td>
+      <td>86.94</td>
+      <td>93.87</td>
+      <td>98.01</td>
+      <td>100.76</td>
+    </tr>
+  </tbody>
+</table>
+<p>7700 rows × 15 columns</p>
+</div></div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./cleaning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Forum voor Educatie
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>jupyter-book-template &#8212; Education and Life Expectancy</title>
+    <title>Information Visualization: Life expectancy &#8212; Education and Life Expectancy</title>
   
   
   
@@ -350,7 +350,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -361,11 +363,23 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>jupyter-book-template</h1>
+    <h1>Information Visualization: Life expectancy</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Information Visualization: Life expectancy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#structure">Structure</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-cleaning-scripts">Dataset cleaning scripts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -375,9 +389,48 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="jupyter-book-template">
-<h1>jupyter-book-template<a class="headerlink" href="#jupyter-book-template" title="Link to this heading">#</a></h1>
-<p>This repository hosts the tutorial and template code for building a basic Jupyter Book website.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="information-visualization-life-expectancy">
+<h1>Information Visualization: Life expectancy<a class="headerlink" href="#information-visualization-life-expectancy" title="Link to this heading">#</a></h1>
+<p>This Jupyter Book contains a data story about country’s life expectancy, and compares those to different factors to try and find correlations.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="structure">
+<h1>Structure<a class="headerlink" href="#structure" title="Link to this heading">#</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── _build              # Jupyter build to deploy
+├── docs                # Files used to create the data story
+├── static              # Contains custom.css file
+├── LICENSE             # Code license
+├── README.md           # General information about project
+├── _config.yml         # Jupyter template config file
+├── _toc                # Jupyter template Table Of Contents file
+├── requirements.txt    # Project dependencies         
+└── runtime.txt         # Python version to use
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="dataset-cleaning-scripts">
+<h1>Dataset cleaning scripts<a class="headerlink" href="#dataset-cleaning-scripts" title="Link to this heading">#</a></h1>
+<p><strong>Used datasets</strong><br></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">disease_homic_infmor_hyg.csv'</span></code> from World Data Bank</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">normalized_edu.csv</span></code> from Kaggle</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">normalized_le_and_comp.csv</span></code> from Kaggle</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">life_merged_1900_pivot.csv</span></code> from Our World In Data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdp_vs_edu.csv</span></code> from World Data Bank</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">life_enrollments.csv</span></code> from World Data Bank</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vaccine_pivot.csv</span></code> from WHO</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">water_life</span></code> from WHO</p></li>
+</ul>
+<p>Click <a class="reference internal" href="#./docs/datasets/"><span class="xref myst">here</span></a> to view all datasets used in the story and click <a class="reference internal" href="#./cleaning/"><span class="xref myst">here</span></a> to see the scripts that were used to clean and merge all datasets used in this data story.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="authors">
+<h1>Authors<a class="headerlink" href="#authors" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Thijn van Veen</p></li>
+<li><p>Leonardo Vinkestijn</p></li>
+<li><p>Luca Bartling</p></li>
+<li><p>Sebastiaan Poggenklaas</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -416,6 +469,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Information Visualization: Life expectancy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#structure">Structure</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-cleaning-scripts">Dataset cleaning scripts</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

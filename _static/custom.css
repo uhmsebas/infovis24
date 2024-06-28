@@ -8,15 +8,16 @@
 
 .bd-article-container h1,
 .bd-article-container h2 {
-  color: #cff8d6;
+  color: #000;
 }
 
 nav.bd-links {
   margin-right: 0;
+  text-decoration: none;
 }
 
 .toc-entry a.nav-link.active {
-  border-left-color: #cff8d6;
+  border-left-color: #39a0c2;
 }
 
 a,
@@ -30,7 +31,7 @@ nav.bd-links .active:focus > a,
 nav.bd-links .active > a,
 nav.bd-links li > a:hover,
 nav.bd-links li > a:focus {
-  color: #cff8d6;
+  color: #39a0c2;
 }
 
 code.literal {

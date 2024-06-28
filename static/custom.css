@@ -8,11 +8,12 @@
 
 .bd-article-container h1,
 .bd-article-container h2 {
-  color: #cff8d6;
+  color: #000;
 }
 
 nav.bd-links {
   margin-right: 0;
+  text-decoration: none;
 }
 
 .toc-entry a.nav-link.active {
